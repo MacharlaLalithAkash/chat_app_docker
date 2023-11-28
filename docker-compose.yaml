@@ -5,13 +5,25 @@ services:
     image: mongo
     ports:
      - 27017:27017
+    networks:
+     - wazuh-network
+
   react-app:
     container_name: client
     image: client:1.0
     ports:
      - 3000:5000
+    networks:
+     - wazuh-network
+
   node-server:
     container_name: server
     image: server:1.0
     ports:
      - 5000:5000
+    networks:
+     - wazuh-network
+
+networks:
+  wazuh-network:
+    external: true
